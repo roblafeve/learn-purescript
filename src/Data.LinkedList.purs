@@ -1,6 +1,6 @@
 module Data.LinkedList where
 
-import Prelude (class Show, show, ($), (+), (<>))
+import Prelude (class Functor, class Show, show, ($), (+), (<>))
 
 data LinkedList a
   = Empty
@@ -35,5 +35,5 @@ fold :: ∀ a b. (a -> b -> a) -> a -> LinkedList b -> a
 fold fn x Empty = x
 fold fn x (Head y z) = fold fn (fn x y) z
 
-map :: ∀ a b. (a -> b) -> LinkedList a -> LinkedList b
-map fn xs = reverse $ fold (\a b -> prepend (fn b) a) Empty xs
+instance functorLinkedList :: Functor LinkedList where
+  map fn xs = reverse $ fold (\a b -> prepend (fn b) a) Empty xs

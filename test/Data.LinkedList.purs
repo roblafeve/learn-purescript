@@ -4,8 +4,8 @@ import Control.Monad.Eff.Console
 
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.AVar (AVAR)
-import Data.LinkedList (fold, length, make, map, prepend)
-import Prelude (Unit, discard, show, ($), (<>), (+))
+import Data.LinkedList (fold, length, make, prepend)
+import Prelude (Unit, discard, map, show, ($), (+), (<>))
 import Test.Unit (suite, test)
 import Test.Unit.Assert as Assert
 import Test.Unit.Console (TESTOUTPUT)
@@ -32,5 +32,5 @@ main = runTest do
     test "fold" do
       Assert.shouldEqual (fold (<>) "" $ prepend "b" $ make "a") "ba"
     
-    test "map" do
+    test "map instance" do
       Assert.shouldEqual (show $ map ((+) 1) $ prepend 2 $ make 1) "[3,2]"
